@@ -22,7 +22,7 @@ elForm.addEventListener("submit", function(evt) {
 
   }else {
     if (elInput2.value >= Travel_MONEY) {
-      elP.textContent =  `Sizni pulingiz yetdi`;
+      elP.textContent = elName.value + ': Sizni pulingiz yetdi';
     } else {
       elP.textContent = `Sizni puliz yetmadi hullas`;
     }
@@ -32,27 +32,39 @@ elForm.addEventListener("submit", function(evt) {
 
 
 var busTicket = document.querySelector(".bus-ticket");
-var busInput = document.querySelector(".input").value.trim();
+var busInput = document.querySelector(".input");
 
 var elBusP = document.querySelector(".xabar2");
 
 busTicket.addEventListener("submit", function(evt) {
   evt.preventDefault();
 
-  if (isNaN(busInput.value)) {
+  if (isNaN(Number(busInput.value))) {
     elBusP.textContent = "iltimos son kiriting";
+    return;
   } else {
-    if (busInput.value <= 7) {
-      elBusP.textContent = `Sizga chipta tekin`;
-    } else if (busInput.value <= 65) {
-      elBusP.textContent = `Sizga chipta`;
-    } else if (busInput.value < 18) {
-      elBusP.textContent = `Siz koproq pul tolaysiz`;
-    } else if (busInput.value > 7) {
-      elBusP.textContent = `Sizga chipta pullik`;
-    }
+    if (busInput.value > 120) {
+      elBusP.textContent = "Iltimos haqiqiy yoshingizni kiriting!";
+      return;
+     } else if (busInput.value >= 60) {
+      elBusP.textContent = "sizga chipta tekin";
+      return;
+    } else if (busInput.value >= 20) {
+      elBusP.textContent = "sizga chipta 2.000 so'm";
+      return;
+    } else if (busInput.value >= 7) {
+      elBusP.textContent = "sizga chipta 1.400 so'm";
+      return;
+    } else if (busInput.value > 0) {
+      elBusP.textContent = "sizga chipta tekin!";
+      return;
+    } else if (busInput.value == 0) {
+      elBusP.textContent = "Iltimos yoshingizni kiriting!";
+      return;
+    };
+  };
   }
-});
+);
 
 
 
